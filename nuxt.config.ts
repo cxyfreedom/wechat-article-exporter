@@ -9,12 +9,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       aggridLicense: process.env.NUXT_AGGRID_LICENSE,
-      // 会员/限速层（仅公开托管用；默认关闭，fork 私有部署无限速、无付费 UI）
+      // 公开托管站标记（仅公开托管用；默认关闭，fork 私有部署无限速、无下线提示）
+      // 开启后：公开 API 按游客/会员分层限速，文档页展示限速说明与 API 下线提示
       membership: {
         enabled: process.env.NUXT_PUBLIC_MEMBERSHIP_ENABLED === 'true',
-        price: process.env.NUXT_PUBLIC_MEMBERSHIP_PRICE || '0.5',
-        wechatNote: process.env.NUXT_PUBLIC_MEMBERSHIP_WECHAT_NOTE || 'API 会员',
-        qr: process.env.NUXT_PUBLIC_MEMBERSHIP_QR || '/images/member-wechat-qr.png',
       },
     },
     debugMpRequest: false,

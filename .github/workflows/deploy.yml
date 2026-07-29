@@ -7,10 +7,8 @@
 #     NUXT_AGGRID_LICENSE   —— AG-Grid 企业版授权（不填则表格有水印，不影响功能）
 #   Variables（可选）:
 #     NUXT_PUBLIC_MEMBERSHIP_ENABLED  —— 是否开启会员/限流层。默认（不设）关闭：
-#                                        fork 私有部署留空即可，无限速、无付费 UI。
+#                                        fork 私有部署留空即可，无限速、无下线提示。
 #                                        仅官方公开部署需在仓库 Variables 里设为 "true"。
-#     NUXT_PUBLIC_MEMBERSHIP_PRICE / NUXT_PUBLIC_MEMBERSHIP_WECHAT_NOTE  —— 会员页展示文案，不设用默认值
-#     NUXT_PUBLIC_MEMBERSHIP_QR  —— 会员付款二维码图片 URL（外链）。
 #
 # 说明：
 # - 会员/限流开关在「构建期」烘入产物；开源项目默认关闭，fork 后不设该变量即不限速。
@@ -37,9 +35,6 @@ jobs:
         run: yarn build:cf
         env:
           NUXT_PUBLIC_MEMBERSHIP_ENABLED: ${{ vars.NUXT_PUBLIC_MEMBERSHIP_ENABLED }}
-          NUXT_PUBLIC_MEMBERSHIP_PRICE: ${{ vars.NUXT_PUBLIC_MEMBERSHIP_PRICE }}
-          NUXT_PUBLIC_MEMBERSHIP_WECHAT_NOTE: ${{ vars.NUXT_PUBLIC_MEMBERSHIP_WECHAT_NOTE }}
-          NUXT_PUBLIC_MEMBERSHIP_QR: ${{ vars.NUXT_PUBLIC_MEMBERSHIP_QR }}
           NUXT_AGGRID_LICENSE: ${{ secrets.NUXT_AGGRID_LICENSE }}
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
